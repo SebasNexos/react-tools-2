@@ -1,70 +1,66 @@
-import { checkingCredentials, login, logout } from './'; // importar las funciones que queremos despachar 
-import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, singInWithGoogle } from '../../firebase/providers';
-import { LogoutOutlined } from '@mui/icons-material';
+import { loginWithEmailPassword, registerUserWithEmailPassword, singInWithGoogle, logoutFirebase } from '../../firebase/providers';
+import { checkingCredentials, logout, login } from './';
 
-export const checkingAuthentication = ( email, password ) => {
-    return async( dispatch ) => { // el dispatch viene de forma predeterminada para despachar las funciones 
+export const checkingAuthentication = () => {
+    return async( dispatch ) => {
 
-        dispatch( checkingCredentials() ); // despachamos la función del authSlice.js
-
+        dispatch( checkingCredentials() );
+        
     }
 }
 
-// podemos hacer mas de este tipo de funciones que pueden enviar más de una función 
 
 export const startGoogleSignIn = () => {
     return async( dispatch ) => {
 
-        dispatch( checkingCredentials() ); 
+        dispatch( checkingCredentials() );
 
-        const result = await singInWithGoogle(); 
-        
-        if ( !result.ok ) return dispatch( logout( result.errorMessage ) )
-        
-        dispatch( login( result ) ); 
-        
+        const result = await singInWithGoogle();
+        if ( !result.ok ) return dispatch( logout( result.errorMessage ) );
+
+        dispatch( login( result ))
+
     }
 }
 
 
-export const startCreatingUserWithEmailPassword = ({email, password, displayName}) => {
-    return async(dispatch) => {
+export const startCreatingUserWithEmailPassword = ({ email, password, displayName }) => {
+    return async( dispatch ) => {
 
-        dispatch( checkingCredentials() ); 
+        dispatch( checkingCredentials() );
 
-        const { ok, uid, photoURL } = await registerUserWithEmailPassword({ email, password, displayName}); 
+        const result = await registerUserWithEmailPassword({ email, password, displayName });
+        if ( !result.ok ) return dispatch( logout( result.errorMessage ) );
 
-        if ( !ok ) return dispatch( logout( { errorMessage} ) )
-        
-        dispatch( login({ uid, displayName, email, photoURL }))
-        
+        dispatch( login( result ))
+
     }
 
 }
 
 
 export const startLoginWithEmailPassword = ({ email, password }) => {
-    return async(dispatch) => {
+    return async( dispatch ) => {
 
-        dispatch( checkingCredentials() ); 
+        dispatch( checkingCredentials() );
 
-        const result = await loginWithEmailPassword({ email, password }); 
-        console.log(result); 
+        const result = await loginWithEmailPassword({ email, password });
+        console.log(result);
 
-        if ( !result.ok ) return dispatch( logout( result ) ); 
-        dispatch( login( result ))
+        if ( !result.ok ) return dispatch( logout( result ) );
+        dispatch( login( result ));
 
-        
     }
-
 }
+
 
 export const startLogout = () => {
     return async( dispatch ) => {
-
-        await logoutFirebase(); 
-
-        dispatch( logout({}) ); 
         
+        await logoutFirebase();
+
+        dispatch( logout() );
+
     }
 }
+

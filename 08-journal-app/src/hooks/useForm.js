@@ -1,25 +1,27 @@
-import { FormatColorFillRounded, FormatColorFillTwoTone } from '@mui/icons-material';
 import { useEffect, useMemo, useState } from 'react';
 
-export const useForm = ( initialForm = {}, formValidations = {} ) => {
+export const useForm = ( initialForm = {}, formValidations = {}) => {
   
     const [ formState, setFormState ] = useState( initialForm );
-    const [formValidation, setFormValidations] = useState({})
+    const [ formValidation, setFormValidation ] = useState({});
 
-    useEffect( () => {
-        createValidators(); 
+    useEffect(() => {
+        createValidators();
     }, [ formState ])
 
-
+    useEffect( () => { // para poder elegir cualqueir nota 
+        setFormState( initialForm ); 
+    }, [ initialForm ])
+    
     const isFormValid = useMemo( () => {
 
         for (const formValue of Object.keys( formValidation )) {
-            if ( formValidation[formValue] !== null) return false
+            if ( formValidation[formValue] !== null ) return false;
         }
 
-        return true; 
+        return true;
+    }, [ formValidation ])
 
-    }, [ formValidation ]) // memorizar valor 
 
     const onInputChange = ({ target }) => {
         const { name, value } = target;
@@ -34,20 +36,19 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
     }
 
     const createValidators = () => {
-
-        const formCheckValues = {}; 
         
-        for ( const formField of Object.keys( formValidations )) {
-            
-            const [fn, errorMessage = 'Errores de validación'] = formValidations[formField]; 
+        const formCheckedValues = {};
+        
+        for (const formField of Object.keys( formValidations )) {
+            const [ fn, errorMessage ] = formValidations[formField];
 
-            formCheckValues[`${ formField }Valid`] = fn( formState[formField] ) ? null: errorMessage
-
+            formCheckedValues[`${ formField }Valid`] = fn( formState[formField] ) ? null : errorMessage;
         }
 
-        setFormValidations( formCheckValues ); 
-
+        setFormValidation( formCheckedValues );
     }
+
+
 
     return {
         ...formState,
@@ -55,7 +56,7 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         onInputChange,
         onResetForm,
 
-        ...formValidation, 
+        ...formValidation,
         isFormValid
     }
 }
