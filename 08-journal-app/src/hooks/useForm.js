@@ -9,9 +9,10 @@ export const useForm = ( initialForm = {}, formValidations = {}) => {
         createValidators();
     }, [ formState ])
 
-    useEffect( () => { // para poder elegir cualqueir nota 
-        setFormState( initialForm ); 
+    useEffect(() => {
+        setFormState( initialForm );
     }, [ initialForm ])
+    
     
     const isFormValid = useMemo( () => {
 
