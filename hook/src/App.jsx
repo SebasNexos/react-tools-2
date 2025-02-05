@@ -1,13 +1,15 @@
-import { act, useReducer } from 'react';
+import { ContadorMejorado } from "./components/ContadorMejorado";
+import { NewContador } from "./components/NewContador";
 
-
-
-const inititalState = {name: 'Fernado', age:18}; 
 
 export const App = () => {
   return (
     <>
-  
+      <h1>useReducer</h1>
+      <ContadorMejorado /> 
+      <hr />
+      <NewContador /> 
+      <hr />
     </>
   );
 }
