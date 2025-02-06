@@ -1,5 +1,4 @@
-import React from 'react';
-import './login.css';
+import './LoginPage.css';
 
 export const LoginPage = () => {
     return (
@@ -77,4 +76,3 @@ export const LoginPage = () => {
         </div>
     )
 }
-

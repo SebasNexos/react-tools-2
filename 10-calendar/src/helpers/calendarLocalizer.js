@@ -12,4 +12,4 @@ export const localizer = dateFnsLocalizer({
     startOfWeek, 
     getDay,
     locales,
-})
+});
