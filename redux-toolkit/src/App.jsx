@@ -1,36 +1,39 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { setUser, unsetUser } from './reducers/user/userSlice';
+import { Routes, Route, Link } from 'react-router-dom'; 
 import './App.css'
 
-function App() {
 
-  const dispatch = useDispatch(); 
 
-  const {email, fullName} = useSelector(state => state.user); // aqui se obtiene el estado global del reducer user y obtener información del estado 
+import { Index } from './pages/Index'
+import { Home } from './pages/Home';
+import { Cart } from './pages/Cart';
+import { useSelector } from 'react-redux';
 
-  console.log(email, fullName)
+export const App = () => {
+  const { totalCount } = useSelector(state => state.cart);
 
   return (
-    <>
-      <h1>Hola mundo de redux toolkit</h1>
-      <h3>{fullName}</h3>
-      <p>La imagen es bella no la desperdicies. El email del usuario es {email}</p>
-      <button 
-        className='btn btn-primary'
-        onClick={() => dispatch(setUser({ // estos son los payloads que se envian al reducer
-          email: 'urregos358@gmail.com',
-          fullName: 'Sebastian Urrego Graciano',
-          token: '123456789'
-        }))}
-      >Cambiar user</button>
-
-      <button 
-        className='btn btn-primary'
-        onClick={() => dispatch(unsetUser())} // este no se le envia nada ya que no tiene payload en el usersSlice 
-      >unsetUser</button>
-    </>
+    <div className="container">
+      <div className="d-flex py-4">
+        <Link className="btn btn-info mx-2" to="/">Login</Link>
+        <Link className="btn btn-info mx-2" to="/home">Home</Link>
+        <div className="ms-auto">
+          <Link className="btn btn-primary position-relative" to="/cart">
+            Cart
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {totalCount}
+              <span className="visually-hidden">products in cart</span>
+            </span>
+          </Link>
+        </div>
+      </div>
+      <hr />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    </div>
   )
 }
-
 
 export default App

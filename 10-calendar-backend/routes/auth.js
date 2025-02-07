@@ -5,8 +5,10 @@
 
 
 const { Router } = require('express'); // esto no consume recursos 
-const { check } = require('express-validator')
 const router = Router(); 
+
+const { check } = require('express-validator')
+const { validarJWT } = require('../middlewares/validar-jwt'); 
 
 
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth'); // exportación del archivo auth de controler 
@@ -22,6 +24,7 @@ router.post(
         validarCampos // llamar la función de los middlewares 
     ], 
     crearUsuario) // obligar a que tenga unos parametros
+
 router.post(
     '/', 
     [// middlewares 
@@ -30,7 +33,9 @@ router.post(
         validarCampos // llamar la función de los middlewares 
     ],
     loginUsuario) // obligar que tenga parametros 
-router.get('/renew', revalidarToken)
+
+
+router.get('/renew', validarJWT, revalidarToken) // si solo es un middleware se puede pasar de esta manera 
 
 
 // exportar el router en node 

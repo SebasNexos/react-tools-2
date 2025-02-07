@@ -1,12 +1,16 @@
+require('dotenv').config();  // variables de entorno 
 const express = require('express'); // configuración de express 
-require('dotenv').config() // variables de entorno 
-const { dbConnection } = require('./database/config')
+const cors = require('cors'); 
+const { dbConnection } = require('./database/config'); 
 
 // Crear el servidor de express 
 const app = express(); 
 
 // Bases de datos 
 dbConnection(); 
+
+// CORS 
+app.use(cors())
 
 
 // Directorio publico 
@@ -20,6 +24,7 @@ app.use( express.json() ); // esto es necesario para poder mostrar la info
 // Rutas 
 app.use('/api/auth', require('./routes/auth') ); // configuración de la ruta de auth.js
 // CRUD // eventos 
+app.use('/api/events', require('./routes/events')); 
 
 
 // escuchar 

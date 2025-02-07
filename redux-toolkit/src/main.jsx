@@ -1,10 +1,12 @@
+import store from './store/store'
+import App from './App.jsx'
 import { StrictMode } from 'react'
 import { Provider } from 'react-redux'
-import store from './store/store'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'; 
+import './index.css'
+
 
 // debemos de vincular dos cosas de redux 
 
@@ -12,7 +14,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </StrictMode>,
 )

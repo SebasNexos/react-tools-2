@@ -1,0 +1,47 @@
+{
+    "users": [
+      { "id": 1, "name": "Alice Johnson", "username": "alicej", "email": "alice@example.com", "password": "pass1234" },
+      { "id": 2, "name": "Bob Smith", "username": "bobsmith", "email": "bob@example.com", "password": "securepass" },
+      { "id": 3, "name": "Charlie Brown", "username": "charlieb", "email": "charlie@example.com", "password": "mypassword" },
+      { "id": 4, "name": "David White", "username": "davidw", "email": "david@example.com", "password": "davidpass" },
+      { "id": 5, "name": "Emma Davis", "username": "emmad", "email": "emma@example.com", "password": "emma123" },
+      { "id": 6, "name": "Frank Harris", "username": "frankh", "email": "frank@example.com", "password": "frankpass" },
+      { "id": 7, "name": "Grace Lee", "username": "gracel", "email": "grace@example.com", "password": "gracepass" },
+      { "id": 8, "name": "Henry Walker", "username": "henryw", "email": "henry@example.com", "password": "henrypass" },
+      { "id": 9, "name": "Isla Moore", "username": "islam", "email": "isla@example.com", "password": "islapass" },
+      { "id": 10, "name": "Jack Wilson", "username": "jackw", "email": "jack@example.com", "password": "jackpass" },
+      { "id": 11, "name": "Katie Brown", "username": "katieb", "email": "katie@example.com", "password": "katiepass" },
+      { "id": 12, "name": "Liam Johnson", "username": "liamj", "email": "liam@example.com", "password": "liampass" },
+      { "id": 13, "name": "Mia Clark", "username": "miac", "email": "mia@example.com", "password": "miapass" },
+      { "id": 14, "name": "Noah Martin", "username": "noahm", "email": "noah@example.com", "password": "noahpass" },
+      { "id": 15, "name": "Olivia Lewis", "username": "olivial", "email": "olivia@example.com", "password": "oliviapass" },
+      { "id": 16, "name": "Paul Walker", "username": "paulw", "email": "paul@example.com", "password": "paulpass" },
+      { "id": 17, "name": "Quinn Adams", "username": "quinna", "email": "quinn@example.com", "password": "quinnpass" },
+      { "id": 18, "name": "Rachel Green", "username": "rachelg", "email": "rachel@example.com", "password": "rachelpass" },
+      { "id": 19, "name": "Samuel Baker", "username": "samuelb", "email": "samuel@example.com", "password": "samuelpass" },
+      { "id": 20, "name": "Tina Carter", "username": "tinac", "email": "tina@example.com", "password": "tinapass" }
+    ],
+    "products": [
+      { "id": 1, "name": "Laptop", "price": 1200, "category": "Electronics" },
+      { "id": 2, "name": "Smartphone", "price": 800, "category": "Electronics" },
+      { "id": 3, "name": "Tablet", "price": 500, "category": "Electronics" },
+      { "id": 4, "name": "Headphones", "price": 100, "category": "Accessories" },
+      { "id": 5, "name": "Keyboard", "price": 50, "category": "Accessories" },
+      { "id": 6, "name": "Mouse", "price": 30, "category": "Accessories" },
+      { "id": 7, "name": "Monitor", "price": 300, "category": "Electronics" },
+      { "id": 8, "name": "Chair", "price": 150, "category": "Furniture" },
+      { "id": 9, "name": "Desk", "price": 200, "category": "Furniture" },
+      { "id": 10, "name": "Backpack", "price": 60, "category": "Accessories" },
+      { "id": 11, "name": "Coffee Maker", "price": 80, "category": "Home Appliances" },
+      { "id": 12, "name": "Blender", "price": 90, "category": "Home Appliances" },
+      { "id": 13, "name": "TV", "price": 700, "category": "Electronics" },
+      { "id": 14, "name": "Speakers", "price": 150, "category": "Electronics" },
+      { "id": 15, "name": "Printer", "price": 200, "category": "Electronics" },
+      { "id": 16, "name": "Gaming Console", "price": 400, "category": "Electronics" },
+      { "id": 17, "name": "Watch", "price": 250, "category": "Accessories" },
+      { "id": 18, "name": "Camera", "price": 600, "category": "Electronics" },
+      { "id": 19, "name": "Microphone", "price": 120, "category": "Electronics" },
+      { "id": 20, "name": "External Hard Drive", "price": 130, "category": "Electronics" }
+    ]
+}
+  
