@@ -1,39 +1,53 @@
-import { useForm } from '../../hooks';
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
+import { useAuthStore, useForm } from '../../hooks';
 import './LoginPage.css';
 
-// mantener el login y el registro en diferentes partes 
-
 const loginFormFields = {
-    loginEmail: '',
-    loginPassword: '', 
+    loginEmail:    '',
+    loginPassword: '',
 }
 
 const registerFormFields = {
-    registerName: '', 
-    registerEmail: '',
-    registerPassword: '', 
-    registerPassword2: '', 
+    registerName:      '',
+    registerEmail:     '',
+    registerPassword:  '',
+    registerPassword2: '',
 }
+
 
 
 export const LoginPage = () => {
 
-    // login 
-    const {loginEmail, loginPassword, onInputChange: onLoginInputChange } = useForm( loginFormFields ); 
+    const { startLogin, errorMessage, startRegister } = useAuthStore();
 
-    // register 
-    const { registerName, registerEmail, registerPassword, registerPassword2, onInputChange: onRegisterInputChange } = useForm( registerFormFields ); 
+    const { loginEmail, loginPassword, onInputChange:onLoginInputChange } = useForm( loginFormFields );
+    const { registerEmail, registerName, registerPassword, registerPassword2, onInputChange:onRegisterInputChange } = useForm( registerFormFields );
 
     const loginSubmit = ( event ) => {
-        event.preventDefault(); 
-        console.log({ loginEmail, loginPassword })
+        event.preventDefault();
+        startLogin({ email: loginEmail, password: loginPassword });
     }
 
-    const registerSubmit = (event) => {
-        event.preventDefault(); 
-        console.log({ registerName, registerEmail, registerPassword, registerPassword2 });
-        
+    const registerSubmit = ( event ) => {
+        event.preventDefault();
+        if ( registerPassword !== registerPassword2 ) {
+            Swal.fire('Error en registro', 'Contraseñas no son iguales', 'error');
+            return;
+        }
+
+        startRegister({ name: registerName, email: registerEmail, password: registerPassword });
     }
+
+
+    useEffect(() => {
+      if ( errorMessage !== undefined ) {
+        Swal.fire('Error en la autenticación', errorMessage, 'error');
+      }    
+    }, [errorMessage])
+    
+
+
 
     return (
         <div className="container login-container">
